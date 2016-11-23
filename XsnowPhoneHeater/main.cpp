@@ -1,5 +1,8 @@
 #include "XsnowPhoneHeater.h"
+#include "Thread.h"
 #include <QtWidgets/QApplication>
+
+//QMutex Mutex;
 
 int main(int argc, char *argv[])
 {

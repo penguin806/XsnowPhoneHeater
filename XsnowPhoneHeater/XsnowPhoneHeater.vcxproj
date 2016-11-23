@@ -81,6 +81,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Thread.cpp" />
     <ClCompile Include="XsnowPhoneHeater.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_XsnowPhoneHeater.h" />
+    <ClInclude Include="Thread.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="XsnowPhoneHeater.qrc">
