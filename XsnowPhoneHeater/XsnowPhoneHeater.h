@@ -4,7 +4,17 @@
 #include "ui_XsnowPhoneHeater.h"
 #include "Thread.h"
 
-#define MAX_THREAD 8
+#ifdef Q_OS_WIN
+
+#define TEXT(string) QString::fromLocal8Bit(string)
+
+#else
+
+#define TEXT(string) string
+
+#endif
+
+#define MAX_THREAD 20
 
 class XsnowPhoneHeater : public QMainWindow
 {

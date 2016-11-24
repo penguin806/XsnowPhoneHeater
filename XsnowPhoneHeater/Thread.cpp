@@ -18,6 +18,8 @@ void XsnowThread::run()
 {
 	//QMutexLocker Lock(&Mutex);
 
+    // v0.2 Alpha: 增加浮点运算
+    double Temp = 1.1;
 	do
 	{
     //	Mutex.lock();
@@ -26,6 +28,7 @@ void XsnowThread::run()
             //Mutex.unlock();
 			break;
 		}
+        Temp*=Temp;
         //Mutex.unlock();
 	} while (true);
 

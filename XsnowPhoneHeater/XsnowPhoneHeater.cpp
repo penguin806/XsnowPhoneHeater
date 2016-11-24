@@ -49,21 +49,25 @@ void XsnowPhoneHeater::GetThreadNumberAndSetLabel()
 {
     this->m_ThreadNumber = this->ui.horizontalSlider->value();
 
-    this->ui.label->setText(QString::fromLocal8Bit("çº¿ç¨‹: ")+
+    this->ui.label->setText(TEXT("Ïß³Ì: ")+
                             QString::number(this->m_ThreadNumber));
 
     QString Buffer;
-    if(this->m_ThreadNumber >= 6)
+    if(this->m_ThreadNumber >= 16)
     {
-        Buffer = QString::fromLocal8Bit("è¶…å¼ºåŠ çƒ­");
+        Buffer = TEXT("Boom!");
+    }
+    else if(this->m_ThreadNumber >= 6)
+    {
+        Buffer = TEXT("³¬Ç¿¼ÓÈÈ");
     }
     else if(this->m_ThreadNumber >= 2)
     {
-        Buffer = QString::fromLocal8Bit("å‡è¡¡");
+        Buffer = TEXT("¾ùºâ");
     }
     else
     {
-        Buffer = QString::fromLocal8Bit("æè‡´æ€§èƒ½");
+        Buffer = TEXT("¼«ÖÂĞÔÄÜ");
     }
     this->ui.label_2->setText(Buffer);
 }
@@ -80,13 +84,13 @@ void XsnowPhoneHeater::OnRunningDisableControls(bool bRunning)
     if(bRunning)
     {
         this->ui.label->setText(
-                    QString::fromLocal8Bit("å·²å¯åŠ¨çº¿ç¨‹: ") +
+                    TEXT("ÒÑÆô¶¯Ïß³Ì: ") +
                     QString::number(this->m_ThreadNumber));
     }
     else
     {
         this->ui.label->setText(
-                    QString::fromLocal8Bit("çº¿ç¨‹: ") +
+                    TEXT("Ïß³Ì: ") +
                     QString::number(this->m_ThreadNumber));
     }
 
@@ -102,12 +106,19 @@ void XsnowPhoneHeater::onHeatButtonClicked()
     int Result;
 
     Result = QMessageBox::question(this,"xSnow",
-               QString::fromLocal8Bit(
-                 "è¯·é—®æ‚¨æ˜¯å¦ç¡®å®šè¦åŠ çƒ­æ‚¨çš„çˆ±æœº?"),
+                 TEXT("ÄúÈ·¶¨Òª¿ªÊ¼¼ÓÈÈÂğ?"),
                QMessageBox::Yes, QMessageBox::No);
 
     if(Result == QMessageBox::No)
         return;
+
+    Result = QMessageBox::question(this,"Confirm",
+                 TEXT("ÇëÎÊÄúÕæµÄÈ·¶¨Âğ?"),
+               QMessageBox::Yes, QMessageBox::No);
+
+    if(Result == QMessageBox::No)
+        return;
+
 
     this->GetThreadNumberAndSetLabel();
     this->OnRunningDisableControls(true);
@@ -147,8 +158,9 @@ void XsnowPhoneHeater::onCancelButtonClicked()
 
 void XsnowPhoneHeater::onAboutButtonClicked()
 {
-    QString Buffer = QString::fromLocal8Bit(
-                "xSnow Phone Heater\r\nVersion: 0.1 Alpha\r\n\
-Website: www.xsnow.moe\r\nè½¯ä»¶é‡‡ç”¨GPLåè®®");
+    QString Buffer = TEXT("xSnow Phone Heater\r\nVersion: 0.2 Alpha\r\n\
+Website: www.xsnow.moe\r\nÈí¼ş²ÉÓÃGPLĞ­Òé\r\n\
+Tips: Ïß³ÌÊıÓë·¢ÈÈĞ§ÂÊ³ÉÕı±È, ÓëÏµÍ³Á÷³©¶È·´±È, \
+Çë¸ù¾İCPUºËĞÄÊıµ÷Õû\r\nNOTE7ÓÃ»§É÷ÓÃ!!!\r\n");
     QMessageBox::information(this,"xSnow",Buffer);
 }
